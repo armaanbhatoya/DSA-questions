@@ -38,10 +38,18 @@ void merge_sort(vector<int> &arr, int low , int high){
 }
 
 int main(){
-    vector<int> arr = {2,1,4,5,2,5};
+    int n;
+    cout << "Enter the number of elements: ";
+    cin >> n;
+    vector<int> arr(n);
+    cout << "Enter the elements: ";
+    for(int i = 0; i < n; i++){
+        cin >> arr[i];
+    }
     merge_sort(arr, 0, arr.size() - 1);
+    cout << "Sorted array: ";
     for(int i = 0; i < arr.size(); i++){
-        cout << arr[i] << "  ";
+        cout << arr[i] << " ";
     }
     return 0;
 }
