@@ -29,9 +29,18 @@ Node* convertarr2ll(vector<int> &arr){
     return head;
 }
 
+void Node_traversal(Node* head){
+    Node* temp = head;
+
+    while(temp !=nullptr){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+
 int main(){
     vector<int> arr= {2,3,4,6};
     Node* head = convertarr2ll(arr);
-    cout<<head->data<<endl;
+    Node_traversal(head);
     return 0;
 }
