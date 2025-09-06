@@ -128,6 +128,15 @@ Node* headInsertion(Node* head, int val){
     
     return temp;
 }
+Node* tailInsertion(Node* head, int val){ 
+    if(head == nullptr) return new Node(val);
+    Node* temp = head;
+    while(temp->next != nullptr){
+        temp = temp->next;
+    }
+    temp->next = new Node(val);
+    return head;
+}
 
 int main(){
     vector<int> arr= {2,3,4,6};
@@ -150,7 +159,10 @@ int main(){
 
     head = headInsertion(head, 5);
     Node_traversal(head);
-    
+
+    head = tailInsertion(head, 10);
+    Node_traversal(head);
+
 
     return 0;
 }
