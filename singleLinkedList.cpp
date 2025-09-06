@@ -154,6 +154,21 @@ Node* insertAtPosition(Node* head, int k, int val){
     }
     return head;
 }
+Node* insertBeforeValue(Node* head, int x ,int val){// x = element value to check
+    if(head == nullptr) return nullptr;
+    if(head->data == x) return new Node(val,head);
+    Node* temp = head;
+
+    while(temp->next!=nullptr){
+        if(temp->next->data == x){
+            temp->next = new Node(val, temp->next);
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
+
 
 int main(){
     vector<int> arr= {2,3,4,6};
@@ -174,13 +189,16 @@ int main(){
     // head = deletebyvalue(head, 6);
     // Node_traversal(head);
 
-    head = headInsertion(head, 5);
-    Node_traversal(head);
+    // head = headInsertion(head, 5);
+    // Node_traversal(head);
 
-    head = tailInsertion(head, 10);
-    Node_traversal(head);
+    // head = tailInsertion(head, 10);
+    // Node_traversal(head);
 
     head = insertAtPosition(head, 4,20);
+    Node_traversal(head);
+
+    head = insertBeforeValue(head, 3,20);
     Node_traversal(head);
     return 0;
 }
