@@ -122,6 +122,13 @@ Node* deletebyvalue(Node* head, int value){
     return head;
 }
 
+// <-------------   INSERTION   --------------------------------------------------------------->
+Node* headInsertion(Node* head, int val){
+    Node* temp = new Node(val,head);
+    
+    return temp;
+}
+
 int main(){
     vector<int> arr= {2,3,4,6};
     Node* head = convertarr2ll(arr);
@@ -135,11 +142,15 @@ int main(){
     // head = deleteTail(head);
     // Node_traversal(head);
 
-    head = deletebyposition(head, 3);
-    Node_traversal(head);
+    // head = deletebyposition(head, 3);
+    // Node_traversal(head);
 
-    head = deletebyvalue(head, 6);
+    // head = deletebyvalue(head, 6);
+    // Node_traversal(head);
+
+    head = headInsertion(head, 5);
     Node_traversal(head);
+    
 
     return 0;
 }
