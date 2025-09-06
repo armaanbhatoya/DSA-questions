@@ -67,6 +67,22 @@ Node* deleteHead(Node* head){//HEAD DELETION
     return head;
 }
 
+Node* deleteTail(Node* head){//TAIL DELETION    
+    if(head == nullptr) return nullptr;
+    if(head->next == nullptr) {
+        delete head;
+        return nullptr;
+    }
+    Node* temp = head;
+    while(temp->next->next != nullptr){
+        temp = temp->next;
+    }
+    delete temp->next;
+    temp->next = nullptr;
+    return head;
+    
+}
+
 int main(){
     vector<int> arr= {2,3,4,6};
     Node* head = convertarr2ll(arr);
@@ -75,6 +91,9 @@ int main(){
 
     // cout<<(checkifPresent(head, 3)?"present\n":"not present\n");
 
-    Node_traversal(deleteHead(head));
+    head = deleteHead(head);
+    Node_traversal(head);
+    head = deleteTail(head);
+    Node_traversal(head);
     return 0;
 }
