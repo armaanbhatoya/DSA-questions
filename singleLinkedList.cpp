@@ -36,6 +36,7 @@ void Node_traversal(Node* head){
         cout<<temp->data<<" ";
         temp = temp->next;
     }
+    cout<<endl;
 }
 
 int lenghtofLL(Node* head){
@@ -48,11 +49,32 @@ int lenghtofLL(Node* head){
     return count;
 }
 
+int checkifPresent(Node* head, int value){
+    Node* temp = head;
+    while(temp !=nullptr){
+        if(value == temp->data) return 1;
+        temp = temp->next;
+    }
+    return 0;
+}
+
+// deletion codes ----------------------------------------------------------->
+Node* deleteHead(Node* head){//HEAD DELETION    
+    if(head == nullptr) return head;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    return head;
+}
+
 int main(){
     vector<int> arr= {2,3,4,6};
     Node* head = convertarr2ll(arr);
     Node_traversal(head);
-    cout<<"\nlenght of linkedlist is "<<lenghtofLL(head)<<endl;
-    
+    // cout<<"\nlenght of linkedlist is "<<lenghtofLL(head)<<endl;
+
+    // cout<<(checkifPresent(head, 3)?"present\n":"not present\n");
+
+    Node_traversal(deleteHead(head));
     return 0;
 }
