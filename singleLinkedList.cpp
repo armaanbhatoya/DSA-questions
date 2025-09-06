@@ -137,6 +137,23 @@ Node* tailInsertion(Node* head, int val){
     temp->next = new Node(val);
     return head;
 }
+Node* insertAtPosition(Node* head, int k, int val){
+    if(head == nullptr || k==1) return new Node(val,head);
+    Node* temp = head;
+    
+    int cnt = 0;
+    
+    while(temp!=nullptr){
+        cnt++;
+        if(cnt == k-1){
+            Node* newNode = new Node(val,temp->next);
+            temp->next = newNode;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
 
 int main(){
     vector<int> arr= {2,3,4,6};
@@ -163,6 +180,7 @@ int main(){
     head = tailInsertion(head, 10);
     Node_traversal(head);
 
-
+    head = insertAtPosition(head, 4,20);
+    Node_traversal(head);
     return 0;
 }
