@@ -157,8 +157,8 @@ Node* insertAtPosition(Node* head, int k, int val){
 Node* insertBeforeValue(Node* head, int x ,int val){// x = element value to check
     if(head == nullptr) return nullptr;
     if(head->data == x) return new Node(val,head);
+    
     Node* temp = head;
-
     while(temp->next!=nullptr){
         if(temp->next->data == x){
             temp->next = new Node(val, temp->next);
