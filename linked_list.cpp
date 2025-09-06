@@ -38,9 +38,21 @@ void Node_traversal(Node* head){
     }
 }
 
+int lenghtofLL(Node* head){
+    int count = 0;
+    Node* temp = head;
+    while(temp != nullptr){
+        temp = temp->next;
+        count++;
+    }
+    return count;
+}
+
 int main(){
     vector<int> arr= {2,3,4,6};
     Node* head = convertarr2ll(arr);
     Node_traversal(head);
+    cout<<"\nlenght of linkedlist is "<<lenghtofLL(head)<<endl;
+    
     return 0;
 }
