@@ -108,6 +108,20 @@ Node* deletebyposition(Node* head, int k){
     return head;
 }
 
+Node* deletebyvalue(Node* head, int value){
+    Node* temp = head, *prev = nullptr;
+    while(temp!=nullptr){
+        if(temp->data == value){
+            prev->next = prev->next->next;
+            delete temp;
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+    return head;
+}
+
 int main(){
     vector<int> arr= {2,3,4,6};
     Node* head = convertarr2ll(arr);
@@ -123,5 +137,9 @@ int main(){
 
     head = deletebyposition(head, 3);
     Node_traversal(head);
+
+    head = deletebyvalue(head, 6);
+    Node_traversal(head);
+
     return 0;
 }
