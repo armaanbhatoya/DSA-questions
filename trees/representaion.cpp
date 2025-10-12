@@ -25,5 +25,7 @@ int main(){
     root->right = new Node(3);
     
     root->left->right = new Node(5);
+
+    preorder(root);
     return 0;
 }
