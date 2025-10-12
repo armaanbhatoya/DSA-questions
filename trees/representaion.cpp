@@ -26,6 +26,13 @@ void inorder(Node* node){//inorder transversal
     inorder(node->right);
 }
 
+void postorder(Node* node){//postorder transversal
+    if(node == nullptr) return ;
+    postorder(node->left);
+    postorder(node->right);
+    cout<<node->data<<" ";
+}
+
 int main(){
     Node* root = new Node(1);
     root->left = new Node(2);
@@ -33,8 +40,9 @@ int main(){
     
     root->left->right = new Node(5);
 
-    // preorder(root);
-    inorder(root);
+    // postorder(root);
+    // inorder(root);
+    postorder(root);
 
     return 0;
 }
