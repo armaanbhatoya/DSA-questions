@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+#include<queue>
 using namespace std;
 
 struct Node{
@@ -33,6 +35,36 @@ void postorder(Node* node){//postorder transversal
     cout<<node->data<<" ";
 }
 
+vector<vector<int>> levelOrder(Node* root){  //Level Order Transversal
+    vector<vector<int>> ans;
+    if(root == nullptr) return ans;
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()){
+        int size = q.size();
+        vector<int> level;
+        for(int i = 0; i<size; i++){
+            Node* temp = q.front();
+            q.pop();
+            if(temp->left != nullptr) q.push(temp->left);
+            if(temp->right != nullptr) q.push(temp->right);
+            level.push_back(temp->data);
+        }
+        ans.push_back(level);
+    }
+    return ans;
+}
+void printLevelOrder(Node* root){
+    vector<vector<int>> arr = levelOrder(root);
+    cout<<"Level Order Transversal: "<<endl;
+    for(auto it: arr){
+        for(auto i: it){
+            cout<<i<<" ";
+        }
+        cout<<endl;
+    }
+}
+
 int main(){
     Node* root = new Node(1);
     root->left = new Node(2);
@@ -42,7 +74,9 @@ int main(){
 
     // postorder(root);
     // inorder(root);
-    postorder(root);
+    // postorder(root);
+
+    printLevelOrder(root);
 
     return 0;
 }
