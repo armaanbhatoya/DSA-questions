@@ -12,20 +12,29 @@ struct Node{
     }
 };
 
-void preorder(Node* node){
+void preorder(Node* node){//preorder transversal
     if(node == nullptr) return ;
-    cout<<node->data;
+    cout<<node->data<<" ";
     preorder(node->left);
     preorder(node->right);
 }
 
+void inorder(Node* node){//inorder transversal
+    if(node == nullptr) return;
+    inorder(node->left);
+    cout<<node->data<<" ";
+    inorder(node->right);
+}
+
 int main(){
-    struct Node* root = new Node(1);
+    Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
     
     root->left->right = new Node(5);
 
-    preorder(root);
+    // preorder(root);
+    inorder(root);
+
     return 0;
 }
