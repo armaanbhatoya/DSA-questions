@@ -12,6 +12,13 @@ struct Node{
     }
 };
 
+void preorder(Node* node){
+    if(node == nullptr) return ;
+    cout<<node->data;
+    preorder(node->left);
+    preorder(node->right);
+}
+
 int main(){
     struct Node* root = new Node(1);
     root->left = new Node(2);
