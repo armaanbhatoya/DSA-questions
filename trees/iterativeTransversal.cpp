@@ -39,7 +39,38 @@ vector<int> Preorder_iterative(Node *root)
 void printPreoderIterative(Node *root)
 {
     vector<int> arr = Preorder_iterative(root);
-    cout << "Level Order Transversal: " << endl;
+    cout << "InOrder Transversal: " << endl;
+    for (auto it : arr)
+    {
+        cout << it << " ";
+        cout << endl;
+    }
+}
+
+
+vector<int> Inorder_iterative(Node* root){
+    stack<Node*> st;
+    Node* node = root;
+    vector<int> inorder;
+    while(true){
+        if(node!=nullptr){
+            st.push(node);
+            node=node->left;
+        }
+        else{
+            if(st.empty()==true) break;
+            node = st.top();
+            st.pop();
+            inorder.push_back(node->data);
+            node=node->right;
+        }
+    }
+    return inorder;
+}
+void printInoderIterative(Node *root)
+{
+    vector<int> arr = Inorder_iterative(root);
+    cout << "Inorder Transversal: " << endl;
     for (auto it : arr)
     {
         cout << it << " ";
@@ -55,7 +86,9 @@ int main()
 
     root->left->right = new Node(5);
 
-    printPreoderIterative(root);
+    // printPreoderIterative(root);
+    printInoderIterative(root);
+
 
     return 0;
 }
