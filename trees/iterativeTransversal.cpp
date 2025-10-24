@@ -47,22 +47,26 @@ void printPreoderIterative(Node *root)
     }
 }
 
-
-vector<int> Inorder_iterative(Node* root){
-    stack<Node*> st;
-    Node* node = root;
+vector<int> Inorder_iterative(Node *root)
+{
+    stack<Node *> st;
+    Node *node = root;
     vector<int> inorder;
-    while(true){
-        if(node!=nullptr){
+    while (true)
+    {
+        if (node != nullptr)
+        {
             st.push(node);
-            node=node->left;
+            node = node->left;
         }
-        else{
-            if(st.empty()==true) break;
+        else
+        {
+            if (st.empty() == true)
+                break;
             node = st.top();
             st.pop();
             inorder.push_back(node->data);
-            node=node->right;
+            node = node->right;
         }
     }
     return inorder;
@@ -77,36 +81,44 @@ void printInoderIterative(Node *root)
         cout << endl;
     }
 }
-vector<int> Postorder_iterative(Node* root){
-     vector<int> postorder;
-        if(root == nullptr) return postorder;
-        Node* curr = root;
-        Node* temp;
-        stack<Node* > st;
-        
-        while(curr!=nullptr || !st.empty()){
-            if(curr!=nullptr){
-                st.push(curr);
-                curr = curr->left;
-            }
-            else{
-                temp = st.top()->right;
-                if(temp ==  nullptr){
+vector<int> Postorder_iterative(Node *root)
+{
+    vector<int> postorder;
+    if (root == nullptr)
+        return postorder;
+    Node *curr = root;
+    Node *temp;
+    stack<Node *> st;
+
+    while (curr != nullptr || !st.empty())
+    {
+        if (curr != nullptr)
+        {
+            st.push(curr);
+            curr = curr->left;
+        }
+        else
+        {
+            temp = st.top()->right;
+            if (temp == nullptr)
+            {
+                temp = st.top();
+                st.pop();
+                postorder.push_back(temp->data);
+                while (!st.empty() && temp == st.top()->right)
+                {
                     temp = st.top();
                     st.pop();
                     postorder.push_back(temp->data);
-                    while(!st.empty() && temp == st.top()->right){
-                        temp = st.top();
-                        st.pop();
-                        postorder.push_back(temp->data);
-                    }
-                }
-                else{
-                    curr = temp;
                 }
             }
+            else
+            {
+                curr = temp;
+            }
         }
-        return postorder;
+    }
+    return postorder;
 }
 void printPostoderIterative(Node *root)
 {
@@ -118,6 +130,77 @@ void printPostoderIterative(Node *root)
         // cout << endl;
     }
 }
+
+// ----------------------------------------------------------
+vector<vector<int>> All_treeTraversal(Node *root)
+{
+    stack<pair<Node *, int>> st;
+    st.push({root, 1});
+    vector<int> pre, in, post;
+    vector<vector<int>> ans;
+    if (root == nullptr)
+        return ans;
+    while (!st.empty())
+    {
+        auto it = st.top();
+        st.pop();
+
+        if (it.second == 1)
+        {
+            pre.push_back(it.first->data);
+            it.second++;
+            st.push(it);
+            if (it.first->left != nullptr)
+            {
+                st.push({it.first->left, 1});
+            }
+        }
+
+        else if (it.second == 2)
+        {
+            in.push_back(it.first->data);
+            it.second++;
+            st.push(it);
+            if (it.first->right != nullptr)
+            {
+                st.push({it.first->right, 1});
+            }
+        }
+        else
+        {
+            post.push_back(it.first->data);
+        }
+    }
+    ans.push_back(pre);
+    ans.push_back(in);
+    ans.push_back(post);
+}
+
+void print_All_treeTransversal(Node *root)
+{
+    vector<vector<int>> ans = All_treeTraversal(root);
+    cout << "Preorder Transversal: " << endl;
+    for (auto it : ans[0])
+    {
+        cout << it << " ";
+    }
+    cout << endl;
+
+    cout << "Inorder Transversal: " << endl;
+    for (auto it : ans[1])
+    {
+        cout << it << " ";
+    }
+    cout << endl;
+
+    cout << "Postorder Transversal: " << endl;
+    for (auto it : ans[2])
+    {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+// ----------------------------------------------------------------------------
 int main()
 {
     Node *root = new Node(1);
@@ -128,8 +211,8 @@ int main()
 
     // printPreoderIterative(root);
     // printInoderIterative(root);
-    printPostoderIterative(root);
-
+    // printPostoderIterative(root);
+    print_All_treeTransversal(root);
 
     return 0;
 }
