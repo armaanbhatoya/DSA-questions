@@ -77,7 +77,47 @@ void printInoderIterative(Node *root)
         cout << endl;
     }
 }
-
+vector<int> Postorder_iterative(Node* root){
+     vector<int> postorder;
+        if(root == nullptr) return postorder;
+        Node* curr = root;
+        Node* temp;
+        stack<Node* > st;
+        
+        while(curr!=nullptr || !st.empty()){
+            if(curr!=nullptr){
+                st.push(curr);
+                curr = curr->left;
+            }
+            else{
+                temp = st.top()->right;
+                if(temp ==  nullptr){
+                    temp = st.top();
+                    st.pop();
+                    postorder.push_back(temp->data);
+                    while(!st.empty() && temp == st.top()->right){
+                        temp = st.top();
+                        st.pop();
+                        postorder.push_back(temp->data);
+                    }
+                }
+                else{
+                    curr = temp;
+                }
+            }
+        }
+        return postorder;
+}
+void printPostoderIterative(Node *root)
+{
+    vector<int> arr = Postorder_iterative(root);
+    cout << "Postorder Transversal: " << endl;
+    for (auto it : arr)
+    {
+        cout << it << " ";
+        // cout << endl;
+    }
+}
 int main()
 {
     Node *root = new Node(1);
@@ -87,7 +127,8 @@ int main()
     root->left->right = new Node(5);
 
     // printPreoderIterative(root);
-    printInoderIterative(root);
+    // printInoderIterative(root);
+    printPostoderIterative(root);
 
 
     return 0;
