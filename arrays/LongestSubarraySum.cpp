@@ -5,7 +5,8 @@ using namespace std;
 
 class Solution {
 public:
-    int longestSubarray(vector<int> &nums, int k) {
+    int longestSubarray(vector<int> &nums, int k) { 
+        //   -----------------------optimal solution for only non-negatives
         int right = 0;
         int left = 0;
         int n = nums.size();
@@ -25,6 +26,9 @@ public:
             }
         }
         return maxL;
+
+        
+
     }
 };
 
