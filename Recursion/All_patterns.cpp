@@ -24,10 +24,25 @@ bool printS(int ind, vector<int> &ds, int s, int sum, vector<int>& arr, int n){
     return false;
 }
 
+// for counting the number of subsequences
+int countS(int ind, int s, int sum, vector<int> arr, int n){
+    if(ind == n){
+        if(s == sum) return 1;
+        else return 0;
+    }
+
+    s += arr[ind];
+    int l = countS(ind+1, s, sum, arr, n);
+    s -= arr[ind];
+    int r = countS(ind+1, s, sum, arr, n);
+    return l+r;
+}
+
 int main(){
-    vector<int> arr = {41,2,3,4};
-    int k = 48;
+    vector<int> arr = {1,2,3,4};
+    int k = 5;
     vector<int> ds;
-    printS(0,ds, 0, k, arr, arr.size());
+    // printS(0,ds, 0, k, arr, arr.size());
+    cout<<"number of subsequences with sum = k :=> "<<countS(0, 0, k, arr, arr.size())<<endl;
     return 0;
 }
